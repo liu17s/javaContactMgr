@@ -1,0 +1,100 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package helloworld;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.Node;
+
+public class HelloWorld extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Dynamic Creation Test");
+        Button btn = new Button();
+        btn.setText("Create Button");
+        VBox vbox = new VBox(8);
+        TextField text1 = new TextField();
+        vbox.getChildren().addAll(text1, btn);
+        
+        HBox hbox = new HBox();
+        hbox.getChildren().add(vbox);
+        Button btn1 = new Button();
+        btn1.setText("Get IDs");
+        hbox.getChildren().add(btn1);
+        
+        
+        String qwerty = text1.getText();
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+                
+                
+                vbox.getChildren().add(new Button(text1.getText()));
+                text1.clear();
+                System.out.println();
+            }   
+            
+        });
+        
+                btn1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int counter = 0;
+                 for (Node node : vbox.getChildren()) {
+                     
+                     
+                 if (node.getId() == null)
+                 {
+                     node.setId(Integer.toString(counter));
+                     counter++;
+                 }
+
+            }   
+            }
+      
+            
+        });
+        
+      
+      Button btn2 = new Button("Test2");
+      hbox.getChildren().add(btn2);
+
+                btn2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                 for (Node node : vbox.getChildren()) {
+                     
+                     System.out.println(node.getId());
+
+            }   
+            }
+      
+            
+        });
+        
+        
+        ScrollPane s1 = new ScrollPane();
+ s1.setPrefSize(120, 120);
+ s1.setContent(hbox);
+        StackPane root = new StackPane();
+        root.getChildren().add(s1);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
+    }
+}
