@@ -14,7 +14,7 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem fx:id="newMenuItem" mnemonicParsing="false" text="New" />
+            <MenuItem fx:id="newMenuItem"  mnemonicParsing="false" onAction="#newContactScreen" text="New Contact" />
             <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#quitApp" text="Quit" />
           </items>
         </Menu>
@@ -28,10 +28,10 @@
                   <Label layoutX="14.0" layoutY="14.0" text="Name:" />
                   <Label layoutX="14.0" layoutY="86.0" text="Email:" />
                   <Label layoutX="14.0" layoutY="123.0" text="Phone #:" />
-                  <Button id="newContactButton" fx:id="submitButton" layoutX="321.0" layoutY="18.0" mnemonicParsing="false" onAction="#submitButtonClick" text="New Contact" />
+                  <Button fx:id="newContactButton" onAction="#newContactScreen" layoutX="321.0" layoutY="18.0" mnemonicParsing="false" text="New Contact" />
                   <Button id="updateButton" layoutX="356.0" layoutY="54.0" mnemonicParsing="false" text="Update" />
                   <Label layoutX="14.0" layoutY="50.0" text="Address:" />
-                  <Label id="nameField" layoutX="82.0" layoutY="14.0" text="Name Goes Here" />
+                  <Label fx:id="nameField" layoutX="82.0" layoutY="14.0" text="Name Goes Here" />
                   <Label id="addressField" layoutX="82.0" layoutY="50.0" text="Address Goes Here" />
                   <Label id="emailField" layoutX="83.0" layoutY="86.0" text="Email Goes Here" />
                   <Label id="phoneField" layoutX="83.0" layoutY="123.0" text="Phone Goes Here" />
