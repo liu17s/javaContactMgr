@@ -21,8 +21,45 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 
 public class HelloWorld extends Application {
+    
+    
+    public static boolean isValidEmailId(String email) {
+
+        String emailPattern = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})";
+        Pattern p = Pattern.compile(emailPattern);
+        Matcher m = p.matcher(email);
+        return m.matches();
+    }
+    
+    
+    
+    
+    private static boolean validatePhoneNumber(String phoneNo) {
+		//validate phone numbers of format "1234567890"
+		if (phoneNo.matches("\\d{10}")) return true;
+		//validating phone number with -, . or spaces
+		else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
+		//validating phone number with extension length from 3 to 5
+		else if(phoneNo.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) return true;
+		//validating phone number where area code is in braces ()
+		else if(phoneNo.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) return true;
+		//return false if nothing matches the input
+		else return false;
+		
+	}
+    
+    
+      
+    
+    
+    
+    
     public static void main(String[] args) {
         
         launch(args);
@@ -59,7 +96,14 @@ public class HelloWorld extends Application {
         Label lbl12 = new Label("919-123-4567");
         
         
-        
+        Stage emailerror = new Stage();
+    emailerror.initModality(Modality.WINDOW_MODAL);
+
+    VBox vbox3 = new VBox(new Label("Hi"), new Button("Ok."));
+
+    emailerror.setScene(new Scene(vbox3));
+    emailerror.show();
+    
         
         
         Button btn2 = new Button();
@@ -148,7 +192,19 @@ public class HelloWorld extends Application {
             public void handle(ActionEvent event) {
                 if (counter<32)
                 {
-                barray[counter].setText((counter+1) + ": " + text1.getText());
+                if (!isValidEmailId(text3.getText()))
+                {
+                    emailerror.show();
+                }
+                else
+                {
+                    if (!validatePhoneNumber(text4.getText()))
+                    {
+                        emailerror.show();
+                    }
+                    else
+                    {
+                        barray[counter].setText(text1.getText());
                 address[counter] = text2.getText();
                 email[counter] = text3.getText();
                 phone[counter] = text4.getText();
@@ -158,7 +214,7 @@ public class HelloWorld extends Application {
                 text2.clear();
                 text3.clear();
                 text4.clear();
-                
+                update.setVisible(true);
                 for (int i = 0; i < counter+1; i++)
                 {
                 int counter2 = i;
@@ -178,6 +234,9 @@ public class HelloWorld extends Application {
                 }
                 
                 
+                    }
+                }
+                
                 else
                 {
                     System.out.println("Contact Limit Reached");
@@ -186,6 +245,15 @@ public class HelloWorld extends Application {
             
         });
         
+               
+        update.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+             
+            }   
+            
+        });
                
         
       
