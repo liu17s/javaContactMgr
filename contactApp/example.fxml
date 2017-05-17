@@ -14,8 +14,8 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" fx:id="newMenuItem"/>
-            <MenuItem mnemonicParsing="false" text="Quit" fx:id="quitMenuItem" onAction="#quitApp"/>
+            <MenuItem fx:id="newMenuItem" mnemonicParsing="false" text="New" />
+            <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#quitApp" text="Quit" />
           </items>
         </Menu>
       </menus>
@@ -26,12 +26,15 @@
             <Pane layoutX="200.0" prefHeight="371.0" prefWidth="440.0">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Name:" />
-                  <TextField fx:id="nameEntry" layoutX="85.0" layoutY="9.0" />
-                  <TextField fx:id="emailEntry" layoutX="85.0" layoutY="45.0" />
-                  <Label layoutX="14.0" layoutY="50.0" text="Email:" />
-                  <TextField fx:id="phoneEntry" layoutX="85.0" layoutY="82.0" />
-                  <Label layoutX="14.0" layoutY="87.0" text="Phone #:" />
-                  <Button fx:id="submitButton" layoutX="326.0" layoutY="288.0" mnemonicParsing="false" text="Submit" onAction="#submitButtonClick"/>
+                  <Label layoutX="14.0" layoutY="86.0" text="Email:" />
+                  <Label layoutX="14.0" layoutY="123.0" text="Phone #:" />
+                  <Button id="newContactButton" fx:id="submitButton" layoutX="321.0" layoutY="18.0" mnemonicParsing="false" onAction="#submitButtonClick" text="New Contact" />
+                  <Button id="updateButton" layoutX="356.0" layoutY="54.0" mnemonicParsing="false" text="Update" />
+                  <Label layoutX="14.0" layoutY="50.0" text="Address:" />
+                  <Label id="nameField" layoutX="82.0" layoutY="14.0" text="Name Goes Here" />
+                  <Label id="addressField" layoutX="82.0" layoutY="50.0" text="Address Goes Here" />
+                  <Label id="emailField" layoutX="83.0" layoutY="86.0" text="Email Goes Here" />
+                  <Label id="phoneField" layoutX="83.0" layoutY="123.0" text="Phone Goes Here" />
                </children>
             </Pane>
          </children>
