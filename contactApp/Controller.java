@@ -117,7 +117,7 @@ public class Controller implements Initializable {
 			updateInfo();
 			});
 		nButton.setLayoutY(buttonY);
-		if(buttonY > contactList.getHeight() - 30){
+		if(buttonY > contactList.getHeight() - 30){ //the -30 fixes a spacing issue
 			contactList.setPrefHeight(contactList.getHeight() + 30);
 		}
 		buttonY = buttonY + 30;
