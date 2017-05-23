@@ -51,6 +51,8 @@ public class Controller implements Initializable {
 	public Contact currentContact = null;
 	//used to assign new contacts an id.
 	public Integer counter = 0;
+	//used to make sure that buttons on menu line up appropriately.
+	public double buttonY = 0;
 	//HashMap that holds the contacts by id
 	public HashMap<Integer, Contact> contactMap = new HashMap<>();
 	
@@ -107,14 +109,20 @@ public class Controller implements Initializable {
 		String email = emailField.getText();
 		String phone = phoneField.getText();
 		counter++;
-		contactMap.put(counter, new Contact(counter.intValue(), name, address, email, phone));
+		int id = counter.intValue();
+		contactMap.put(id, new Contact(counter.intValue(), name, address, email, phone));
 		Button nButton = new Button(name);
 		nButton.setOnAction(e -> {
-			currentContact = contactMap.get(counter.intValue());
+			currentContact = contactMap.get(id);
 			updateInfo();
 			});
+		nButton.setLayoutY(buttonY);
+		if(buttonY > contactList.getHeight() - 30){
+			contactList.setPrefHeight(contactList.getHeight() + 30);
+		}
+		buttonY = buttonY + 30;
 		contactList.getChildren().addAll(nButton);
-		currentContact = contactMap.get(counter.intValue());
+		currentContact = contactMap.get(id);
 		toInfoScreen();
 	}
 	
@@ -126,6 +134,10 @@ public class Controller implements Initializable {
 		addressLbl.setText(currentContact.getAddress());
 		emailLbl.setText(currentContact.getEmail());
 		phoneLbl.setText(currentContact.getPhone());
+	}
+	
+	public void growContactPane(){
+	
 	}
 	
 
