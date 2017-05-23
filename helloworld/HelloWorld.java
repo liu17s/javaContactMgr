@@ -30,7 +30,7 @@ public class HelloWorld extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Dynamic Creation Test");
-   
+   	
         VBox vbox = new VBox(8);
         TextField text1 = new TextField();
         
