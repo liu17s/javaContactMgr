@@ -16,5 +16,21 @@ public class Contact implements Serializable{
 		this.email = email;
 		this.phone = phone;
 	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public String getAddress(){
+		return address;
+	}
+	
+	public String getEmail(){
+		return email;
+	}
+	
+	public String getPhone(){
+		return phone;
+	}
 
 }
