@@ -8,7 +8,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.ScrollPane;
 import javafx.application.Platform;
+import java.util.HashMap;
 
 public class Controller implements Initializable {
 
@@ -48,7 +50,12 @@ public class Controller implements Initializable {
 	//shows the id number of the contact currently on the screen. 0 = no contact.
 	public Contact currentContact = null;
 	//used to assign new contacts an id.
-	public int counter = 0;
+	public Integer counter = 0;
+	//HashMap that holds the contacts by id
+	public HashMap<Integer, Contact> contactMap = new HashMap<>();
+	
+	//Scroll Pane on the left where the contact names are stored.
+	public Pane contactList;
 	
 	/**
 	*	Used to change to editPane to something that is functional for making a new contact.
@@ -87,6 +94,7 @@ public class Controller implements Initializable {
 		updateButton.setVisible(true);
 		newContactButton.setVisible(true);
 		saveButton.setVisible(false);
+		updateInfo();
 	}
 	
 	/**
@@ -99,8 +107,25 @@ public class Controller implements Initializable {
 		String email = emailField.getText();
 		String phone = phoneField.getText();
 		counter++;
-		Contact nContact = new Contact(counter, name, address, email, phone);
+		contactMap.put(counter, new Contact(counter.intValue(), name, address, email, phone));
+		Button nButton = new Button(name);
+		nButton.setOnAction(e -> {
+			currentContact = contactMap.get(counter.intValue());
+			updateInfo();
+			});
+		contactList.getChildren().addAll(nButton);
+		currentContact = contactMap.get(counter.intValue());
 		toInfoScreen();
+	}
+	
+	/**
+	*	Updates the info of the currentContact to the Pane that displays contact information.
+	*/
+	public void updateInfo(){
+		nameLbl.setText(currentContact.getName());
+		addressLbl.setText(currentContact.getAddress());
+		emailLbl.setText(currentContact.getEmail());
+		phoneLbl.setText(currentContact.getPhone());
 	}
 	
 
