@@ -42,17 +42,21 @@ public class Controller implements Initializable {
 	public TextField emailField;
 	public TextField phoneField;
 	
-	public Pane editPane;
+	//Can be used to pass new objects to the Pane where contact information can be edited -- not currently in use.
+	//public Pane editPane;
+	
+	//shows the id number of the contact currently on the screen. 0 = no contact.
+	public Contact currentContact = null;
+	//used to assign new contacts an id.
+	public int counter = 0;
 	
 	/**
 	*	Used to change to editPane to something that is functional for making a new contact.
 	*/
 	public void newContactScreen(){
-		//TODO: move to new contact making screen
 		System.out.println("User wants to make a new contact.");
 		
 		//Adds new TextFields to visible Pane for edits
-		//editPane.getChildren().addAll(toTextField(nameLbl), toTextField(addressLbl), toTextField(emailLbl), toTextField(phoneLbl));
 		nameLbl.setVisible(false);
 		nameField.setVisible(true);
 		addressLbl.setVisible(false);
@@ -65,9 +69,38 @@ public class Controller implements Initializable {
 		newContactButton.setVisible(false);
 		saveButton.setVisible(true);
 	}
-
-	public void makeNewContact(String name, String email, String phone){
 	
+	/**
+	*	Returns the Pane to a view that is used to view contact information.  Used after editing or making a new contact.
+	*/
+	public void toInfoScreen(){
+		
+		//Adds new TextFields to visible Pane for edits
+		nameLbl.setVisible(true);
+		nameField.setVisible(false);
+		addressLbl.setVisible(true);
+		addressField.setVisible(false);
+		emailLbl.setVisible(true);
+		emailField.setVisible(false);
+		phoneLbl.setVisible(true);
+		phoneField.setVisible(false);
+		updateButton.setVisible(true);
+		newContactButton.setVisible(true);
+		saveButton.setVisible(false);
+	}
+	
+	/**
+	*	Saves the information on the screen to a new contact object.
+	*/
+	public void saveNewContact(){
+		System.out.println("User wants to save the new contact.");
+		String name = nameField.getText();
+		String address = addressField.getText();
+		String email = emailField.getText();
+		String phone = phoneField.getText();
+		counter++;
+		Contact nContact = new Contact(counter, name, address, email, phone);
+		toInfoScreen();
 	}
 	
 
