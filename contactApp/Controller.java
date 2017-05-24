@@ -18,8 +18,11 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("View is now loaded!");
     }
-	
-	public MenuItem quitMenuItem;
+        String temp = "";
+        int counter2 = 0;
+	Button[] arr = new Button[10000];
+    
+        public MenuItem quitMenuItem;
 	/**
 	*	Method that quits the app using Platform.exit().
 	*/
@@ -31,7 +34,8 @@ public class Controller implements Initializable {
 	public Button newContactButton;
 	public Button saveButton;
 	public Button updateButton;
-	
+	public Button save2Button;
+        
 	//Original Labels with contact info (initially visible)
 	public Label nameLbl;
 	public Label addressLbl;
@@ -77,6 +81,12 @@ public class Controller implements Initializable {
 		updateButton.setVisible(false);
 		newContactButton.setVisible(false);
 		saveButton.setVisible(true);
+                save2Button.setVisible(false);
+                
+                addressField.clear();
+                emailField.clear();
+                phoneField.clear();
+                nameField.clear();
 	}
 	
 	/**
@@ -96,6 +106,7 @@ public class Controller implements Initializable {
 		updateButton.setVisible(true);
 		newContactButton.setVisible(true);
 		saveButton.setVisible(false);
+                save2Button.setVisible(false);
 		updateInfo();
 	}
 	
@@ -112,10 +123,13 @@ public class Controller implements Initializable {
 		int id = counter.intValue();
 		contactMap.put(id, new Contact(counter.intValue(), name, address, email, phone));
 		Button nButton = new Button(name);
+                arr[counter2] = nButton;
 		nButton.setOnAction(e -> {
 			currentContact = contactMap.get(id);
 			updateInfo();
+                        temp = nButton.getText();
 			});
+                counter++;
 		nButton.setLayoutY(buttonY);
 		if(buttonY > contactList.getHeight() - 30){ //the -30 fixes a spacing issue
 			contactList.setPrefHeight(contactList.getHeight() + 30);
@@ -124,17 +138,76 @@ public class Controller implements Initializable {
 		contactList.getChildren().addAll(nButton);
 		currentContact = contactMap.get(id);
 		toInfoScreen();
+                counter2++;
 	}
 	
 	/**
 	*	Updates the info of the currentContact to the Pane that displays contact information.
 	*/
 	public void updateInfo(){
-		nameLbl.setText(currentContact.getName());
+		System.out.println("User wants to update contact info.");
+                nameLbl.setText(currentContact.getName());
 		addressLbl.setText(currentContact.getAddress());
 		emailLbl.setText(currentContact.getEmail());
 		phoneLbl.setText(currentContact.getPhone());
+                nameField.setText(currentContact.getName());
+                addressField.setText(currentContact.getAddress());
+		emailField.setText(currentContact.getEmail());
+		phoneField.setText(currentContact.getPhone());
+                
+                
+                
+                
+                
+		updateButton.setOnAction(e -> {
+		nameLbl.setVisible(false);
+		nameField.setVisible(true);
+		addressLbl.setVisible(false);
+		addressField.setVisible(true);
+		emailLbl.setVisible(false);
+		emailField.setVisible(true);
+		phoneLbl.setVisible(false);
+		phoneField.setVisible(true);
+		updateButton.setVisible(false);
+		newContactButton.setVisible(false);
+		saveButton.setVisible(false);
+                save2Button.setVisible(true);
+                        
+
+
+                   
+			});
+                
+                
+               
+        
 	}
+        
+        public void updateNewInfo(){
+            
+            
+                        currentContact.name = nameField.getText();
+                        currentContact.phone = phoneField.getText();
+                        currentContact.email = emailField.getText();
+                        currentContact.address = addressField.getText();
+                        
+                           for (int i = 0; i < 10000; i++)
+                        {
+                            if (arr[i] != null)
+                            {
+                            if (arr[i].getText()== temp)
+                                    {
+                                        arr[i].setText(nameField.getText());
+                                    }
+                            
+                            }
+                        }
+                        
+                     
+                        toInfoScreen();
+                        
+            
+        }
 	
 	public void growContactPane(){
 	
