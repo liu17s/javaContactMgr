@@ -22,19 +22,28 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ScrollPane prefHeight="371.0" prefWidth="200.0" />
+            <ScrollPane prefHeight="371.0" prefWidth="205.0">
+            	<Pane fx:id="contactList" prefHeight="368.0" maxWidth="200.0">
+            	</Pane>
+            </ScrollPane>
             <Pane fx:id="editPane" layoutX="200.0" prefHeight="371.0" prefWidth="440.0">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Name:" />
                   <Label layoutX="14.0" layoutY="86.0" text="Email:" />
                   <Label layoutX="14.0" layoutY="123.0" text="Phone #:" />
                   <Button fx:id="newContactButton" onAction="#newContactScreen" layoutX="321.0" layoutY="18.0" mnemonicParsing="false" text="New Contact" />
+                  <Button fx:id="saveButton" layoutX="321.0" layoutY="18.0" mnemonicParsing="false" text="Save" visible="false" onAction="#saveNewContact"/>
+                  <Button fx:id="save2Button" layoutX="321.0" layoutY="18.0" mnemonicParsing="false" text="Save" visible="false" onAction="#updateNewInfo"/>
                   <Button fx:id="updateButton" layoutX="356.0" layoutY="54.0" mnemonicParsing="false" text="Update" />
                   <Label layoutX="14.0" layoutY="50.0" text="Address:" />
-                  <Label fx:id="nameLbl" layoutX="82.0" layoutY="14.0" text="Name Goes Here" />
-                  <Label fx:id="addressLbl" layoutX="82.0" layoutY="50.0" text="Address Goes Here" />
-                  <Label fx:id="emailLbl" layoutX="83.0" layoutY="86.0" text="Email Goes Here" />
-                  <Label fx:id="phoneLbl" layoutX="83.0" layoutY="123.0" text="Phone Goes Here" />
+                  <Label fx:id="nameLbl" layoutX="80.0" layoutY="14.0" text="Name Goes Here" />
+                  <TextField fx:id="nameField" layoutX="80.0" layoutY="11.0" visible="false"/>
+                  <Label fx:id="addressLbl" layoutX="80.0" layoutY="50.0" text="Address Goes Here" />
+                  <TextField fx:id="addressField" layoutX="80.0" layoutY="45.0" visible="false"/>
+                  <Label fx:id="emailLbl" layoutX="80.0" layoutY="86.0" text="Email Goes Here" />
+                  <TextField fx:id="emailField" layoutX="80.0" layoutY="81.0" visible="false"/>
+                  <Label fx:id="phoneLbl" layoutX="80.0" layoutY="123.0" text="Phone Goes Here" />
+                  <TextField fx:id="phoneField" layoutX="80.0" layoutY="118.0" visible="false"/>
                </children>
             </Pane>
          </children>
